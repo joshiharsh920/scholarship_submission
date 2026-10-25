@@ -1,0 +1,150 @@
+{
+  "_version": "1.89.0",
+  "sap.app": {
+    "id": "scholarshipapp.scholarshipsubmission",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.33.0",
+      "toolsId": "e54f4f94-a830-4cce-b6bd-0d359d590fbb"
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "scholarSubmission-Edit": {
+          "semanticObject": "scholarSubmission",
+          "action": "Edit",
+          "title": "{{scholarSubmission-Edit.flpTitle}}",
+          "subTitle": "{{scholarSubmission-Edit.flpSubtitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/StudentServ/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/mainService/metadata.xml",
+          "odataVersion": "4.0"
+        }
+      },
+      "zsd_scholar_subm": {
+        "uri": "/sap/opu/odata4/sap/zsc_sch_subm/srvd_a2x/sap/zsd_scholar_subm/0001/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/zsd_scholar_subm/metadata.xml",
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.153.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "scholarshipapp.scholarshipsubmission.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "zsd_scholar_subm": {
+        "dataSource": "zsd_scholar_subm",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "scholarshipapp.scholarshipsubmission.view",
+        "async": true,
+        "viewPath": "scholarshipapp.scholarshipsubmission.view"
+      },
+      "routes": [
+        {
+          "name": "RouteMainview",
+          "pattern": ":?query:",
+          "target": [
+            "TargetMainview"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetMainview": {
+          "id": "Mainview",
+          "name": "Mainview"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "scholarshipapp.scholarshipsubmission.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    }
+  }
+}
