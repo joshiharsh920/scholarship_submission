@@ -67,7 +67,7 @@
     }
   },
   "sap.ui5": {
-    "flexEnabled": true,
+    "flexEnabled": false,
     "dependencies": {
       "minUI5Version": "1.153.0",
       "libs": {
@@ -83,7 +83,11 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "scholarshipapp.scholarshipsubmission.i18n.i18n"
+          "bundleName": "scholarshipapp.scholarshipsubmission.i18n.i18n",
+          "supportedLocales": [
+            ""
+          ],
+          "fallbackLocale": ""
         }
       },
       "": {
@@ -121,15 +125,14 @@
         "type": "View",
         "viewType": "XML",
         "path": "scholarshipapp.scholarshipsubmission.view",
-        "async": true,
-        "viewPath": "scholarshipapp.scholarshipsubmission.view"
+        "async": true
       },
       "routes": [
         {
           "name": "RouteMainview",
           "pattern": ":?query:",
           "target": [
-            "TargetMainview"
+            "TargetHome"
           ]
         }
       ],
@@ -137,6 +140,10 @@
         "TargetMainview": {
           "id": "Mainview",
           "name": "Mainview"
+        },
+        "TargetHome": {
+          "id": "Home",
+          "name": "Home"
         }
       }
     },

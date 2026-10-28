@@ -1,0 +1,300 @@
+
+<mvc:View
+    controllerName="scholarshipapp.scholarshipsubmission.controller.Home"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    displayBlock="true">
+
+    <Page showHeader="false" enableScrolling="true">
+        <content>
+            <VBox class="scholarshipPage">
+
+                <!-- Application Header -->
+                <Toolbar class="appHeader">
+                    <Image src="images/sap-logo.png"
+                           width="3.5rem"
+                           densityAware="false"/>
+                    <Title text="Central Student Centre"
+                           class="headerTitle"/>
+                    <Text text="|" class="headerDivider"/>
+                    <Title text="Scholarship Portal"
+                           class="headerTitle"/>
+                    <ToolbarSpacer/>
+                    <Button icon="sap-icon://bell"
+                            type="Transparent"
+                            tooltip="Notifications"
+                            press=".onNotifications"/>
+                    <Avatar initials="HJ" displaySize="XS"/>
+                    <Text text="Harsh Joshi" class="headerUser"/>
+                    <Button icon="sap-icon://slim-arrow-down"
+                            type="Transparent"
+                            tooltip="User menu"/>
+                </Toolbar>
+
+                <!-- Body: Sidebar + Dashboard -->
+                <HBox class="dashboardLayout" alignItems="Stretch">
+
+                    <!-- Left Navigation -->
+                    <VBox class="sideBar">
+                        <List
+                            mode="None"
+                            showSeparators="None"
+                            items="{dashboard>/navigation}">
+                            <CustomListItem>
+                                <Button
+                                    text="{dashboard>title}"
+                                    icon="{dashboard>icon}"
+                                    type="{dashboard>type}"
+                                    width="100%"
+                                    press=".onNavigate"/>
+                            </CustomListItem>
+                        </List>
+                    </VBox>
+
+                    <!-- Main Content -->
+                    <VBox class="dashboardMain" width="100%">
+
+                        <HBox class="dashboardColumns"
+                              alignItems="Start"
+                              wrap="Wrap">
+
+                            <!-- Main Dashboard Column -->
+                            <VBox class="primaryColumn">
+
+                                <!-- Hero Banner -->
+                                <HBox class="heroBanner"
+                                      alignItems="Center"
+                                      justifyContent="SpaceBetween"
+                                      wrap="Wrap">
+                                    <VBox class="heroText">
+                                        <Text text="Hello Harsh,"/>
+                                        <Title text="Your Dreams,"
+                                               level="H1"/>
+                                        <Title text="Our Support"
+                                               level="H1"/>
+                                        <Text
+                                            text="Explore scholarships, apply with ease, and take the next step towards your future."
+                                            wrapping="true"
+                                            class="heroDescription"/>
+
+                                        <HBox class="searchBar"
+                                              alignItems="Center">
+                                            <SearchField
+                                                width="100%"
+                                                placeholder="Search scholarships by name, category, or keywords..."
+                                                search=".onSearch"/>
+                                        </HBox>
+                                    </VBox>
+
+                                    <Image
+                                        src="images/student-hero.jpg"
+                                        class="heroImage"
+                                        densityAware="false"
+                                        decorative="true"/>
+                                </HBox>
+
+                                <!-- Categories -->
+                                <FlexBox
+                                    class="categoryGrid"
+                                    wrap="Wrap"
+                                    items="{dashboard>/categories}">
+                                    <VBox class="categoryTile">
+                                        <core:Icon
+                                            src="{dashboard>icon}"
+                                            class="categoryIcon"
+                                            size="1.7rem"/>
+                                        <Title
+                                            text="{dashboard>title}"
+                                            level="H5"/>
+                                        <Text
+                                            text="{dashboard>description}"
+                                            wrapping="true"/>
+                                        <Button
+                                            icon="sap-icon://arrow-right"
+                                            type="Transparent"
+                                            tooltip="Browse category"
+                                            press=".onCategoryPress"/>
+                                    </VBox>
+                                </FlexBox>
+
+                                <!-- Featured Scholarships -->
+                                <Toolbar class="sectionToolbar">
+                                    <Title text="Featured Scholarships"
+                                           level="H3"/>
+                                    <ToolbarSpacer/>
+                                    <Link text="View all"
+                                          press=".onBrowseScholarships"/>
+                                </Toolbar>
+
+                                <FlexBox
+                                id="scholarshipList"
+                                    class="scholarshipGrid"
+                                    wrap="Wrap"
+                                    items="{dashboard>/scholarships}">
+                                    <VBox class="scholarshipCard">
+                                        <Image
+                                            src="{dashboard>image}"
+                                            class="scholarshipImage"
+                                            densityAware="false"
+                                            decorative="true"/>
+                                        <VBox class="scholarshipCardBody">
+                                            <ObjectStatus
+                                                text="{dashboard>category}"
+                                                state="Information"/>
+                                            <Title
+                                                text="{dashboard>name}"
+                                                level="H5"/>
+                                            <Text
+                                                text="{dashboard>description}"
+                                                wrapping="true"/>
+                                            <Text
+                                                text="{dashboard>amount}"
+                                                class="scholarshipAmount"/>
+                                            <Text
+                                                text="{dashboard>deadline}"
+                                                class="scholarshipDeadline"/>
+                                            <Toolbar>
+                                                <ToolbarSpacer/>
+                                                <Button
+                                                    text="View Details"
+                                                    icon="sap-icon://arrow-right"
+                                                    iconFirst="false"
+                                                    type="Transparent"
+                                                    press=".onViewScholarship"/>
+                                            </Toolbar>
+                                        </VBox>
+                                    </VBox>
+                                </FlexBox>
+
+                                <!-- My Applications -->
+                                <Toolbar class="sectionToolbar">
+                                    <Title text="My Applications"
+                                           level="H3"/>
+                                    <ToolbarSpacer/>
+                                    <Link text="View all"
+                                          press=".onViewApplications"/>
+                                </Toolbar>
+
+                                <Table
+                                    class="applicationsTable"
+                                    items="{dashboard>/applications}"
+                                    growing="true"
+                                    growingThreshold="5">
+                                    <columns>
+                                        <Column>
+                                            <Text text="Application ID"/>
+                                        </Column>
+                                        <Column>
+                                            <Text text="Scholarship Name"/>
+                                        </Column>
+                                        <Column>
+                                            <Text text="Type"/>
+                                        </Column>
+                                        <Column>
+                                            <Text text="Status"/>
+                                        </Column>
+                                        <Column>
+                                            <Text text="Last Updated"/>
+                                        </Column>
+                                        <Column hAlign="End">
+                                            <Text text="Actions"/>
+                                        </Column>
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem vAlign="Middle">
+                                            <cells>
+                                                <Text text="{dashboard>id}"/>
+                                                <Text text="{dashboard>name}"/>
+                                                <Text text="{dashboard>type}"/>
+                                                <ObjectStatus
+                                                    text="{dashboard>status}"
+                                                    state="{dashboard>state}"/>
+                                                <Text text="{dashboard>updated}"/>
+                                                <Button
+                                                    text="{dashboard>action}"
+                                                    icon="sap-icon://slim-arrow-down"
+                                                    iconFirst="false"
+                                                    type="Transparent"
+                                                    press=".onApplicationAction"/>
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+
+                            </VBox>
+
+                            <!-- Right Sidebar -->
+                            <VBox class="rightColumn">
+
+                                <Panel headerText="Quick Actions"
+                                       class="dashboardPanel">
+                                    <List
+                                        showSeparators="Inner"
+                                        items="{dashboard>/quickActions}">
+                                        <StandardListItem
+                                            title="{dashboard>title}"
+                                            description="{dashboard>description}"
+                                            icon="{dashboard>icon}"
+                                            type="Navigation"
+                                            press=".onQuickAction"/>
+                                    </List>
+                                </Panel>
+
+                                <Panel headerText="My Application Status"
+                                       class="dashboardPanel">
+                                    <VBox class="progressList">
+                                        <!-- <HBox
+                                            items="{dashboard>/progress}"
+                                            class="progressItems"/> -->
+                                        <List
+                                            showSeparators="None"
+                                            items="{dashboard>/progress}">
+                                            <CustomListItem>
+                                                <HBox
+                                                    class="progressRow"
+                                                    alignItems="Start">
+                                                    <core:Icon
+                                                        src="{dashboard>icon}"
+                                                        size="1.25rem"
+                                                        class="progressIcon"/>
+                                                    <VBox class="progressText">
+                                                        <Title
+                                                            text="{dashboard>title}"
+                                                            level="H6"/>
+                                                        <Text
+                                                            text="{dashboard>date}"/>
+                                                    </VBox>
+                                                    <ToolbarSpacer/>
+                                                    <ObjectStatus
+                                                        text="{dashboard>status}"
+                                                        state="{dashboard>state}"/>
+                                                </HBox>
+                                            </CustomListItem>
+                                        </List>
+                                    </VBox>
+                                </Panel>
+
+                                <Panel headerText="Recent Notifications"
+                                       class="dashboardPanel">
+                                    <List
+                                        items="{dashboard>/notifications}"
+                                        showSeparators="Inner">
+                                        <StandardListItem
+                                            title="{dashboard>title}"
+                                            description="{dashboard>description}"
+                                            icon="{dashboard>icon}"
+                                            info="{dashboard>time}"
+                                            type="Active"
+                                            press=".onNotificationPress"/>
+                                    </List>
+                                </Panel>
+
+                            </VBox>
+                        </HBox>
+                    </VBox>
+                </HBox>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

@@ -1,6 +1,11 @@
-<mvc:View controllerName="scholarshipapp.scholarshipsubmission.controller.Mainview"
+
+<mvc:View
+    controllerName="scholarshipapp.scholarshipsubmission.controller.Mainview"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
-    </Page>
+
+    <mvc:XMLView
+        id="home"
+        viewName="scholarshipapp.scholarshipsubmission.view.Home" />
+
 </mvc:View>
