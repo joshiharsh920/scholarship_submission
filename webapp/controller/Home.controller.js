@@ -18,6 +18,7 @@ sap.ui.define([
         "scholarshipapp.scholarshipsubmission.controller.Home",
         {
             onInit: function () {
+                window.oController= this;
                 var oData = {
                     navigation: [
                         {
@@ -284,7 +285,9 @@ sap.ui.define([
                 }
 
                 var sTitle = oContext.getProperty("title");
-
+                if(sTitle === "Browse Scholarships"){
+                    this.getOwnerComponent().getRouter().navTo("BrowseScholarships");
+                }
                 MessageToast.show("Selected: " + sTitle);
 
                 // Connect to your existing router here.

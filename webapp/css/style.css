@@ -339,3 +339,185 @@
         display: none;
     }
 }
+
+/* Browse page */
+.browsePage,
+.browsePage .sapMPageBgStandard {
+    background: #f4f7fb;
+}
+
+.browseContent {
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+/* Heading */
+.browseHeading {
+    margin-bottom: 22px;
+}
+
+.browseTitle {
+    color: #17456f;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.browseSubtitle {
+    color: #647b94;
+    font-size: 1rem;
+    margin-top: 6px;
+}
+
+/* Filter panel */
+.filterPanel {
+    background: #ffffff;
+    border: 1px solid #dce7f3;
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 26px;
+    box-shadow: 0 2px 8px rgba(20, 55, 90, 0.04);
+}
+
+.filterRow {
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.filterItem {
+    width: 210px;
+}
+
+.filterItem .sapMLabel {
+    color: #34516e;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.clearFilterButton {
+    margin-top: 22px;
+}
+
+/* Results heading */
+.resultsHeader {
+    margin-bottom: 16px;
+}
+
+.resultsHeader .sapMTitle {
+    color: #17456f;
+    font-weight: 700;
+}
+
+/* Scholarship cards */
+.scholarshipCardContainer {
+    gap: 18px;
+}
+
+.scholarshipCard {
+    width: 285px;
+    min-height: 345px;
+    box-sizing: border-box;
+    background: #ffffff;
+    border: 1px solid #dce7f3;
+    border-radius: 12px;
+    padding: 18px;
+    box-shadow: 0 3px 10px rgba(20, 55, 90, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.scholarshipCard:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 18px rgba(20, 55, 90, 0.12);
+}
+
+.scholarshipCardTitle {
+    color: #17456f;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-top: 14px;
+}
+
+.scholarshipCategory {
+    color: #0875d1;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+.scholarshipDescription {
+    color: #647b94;
+    margin-top: 10px;
+    line-height: 1.4;
+}
+
+.scholarshipAmount {
+    background: #edf5ff;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 16px;
+}
+
+.scholarshipAmount .sapMText {
+    color: #647b94;
+    font-size: 0.8rem;
+}
+
+.scholarshipAmount .sapMTitle {
+    color: #0875d1;
+    font-weight: 700;
+}
+
+.scholarshipInfoRow {
+    gap: 9px;
+    margin-top: 12px;
+}
+
+.scholarshipInfoRow .sapMText {
+    color: #647b94;
+    font-size: 0.85rem;
+}
+
+.scholarshipCardActions {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin-top: 14px;
+}
+
+.detailsButton .sapMBtnContent {
+    color: #0875d1;
+    font-weight: 600;
+}
+
+/* Empty result */
+.noResults {
+    padding: 55px 20px;
+    gap: 12px;
+    text-align: center;
+}
+
+.noResults .sapMTitle {
+    color: #17456f;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+    .browseContent {
+        padding: 14px;
+    }
+
+    .filterItem {
+        width: 100%;
+    }
+
+    .scholarshipCard {
+        width: 100%;
+    }
+
+    .scholarshipCardContainer {
+        justify-content: Center;
+    }
+
+    .clearFilterButton {
+        margin-top: 0;
+    }
+}

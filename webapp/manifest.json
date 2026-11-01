@@ -134,6 +134,11 @@
           "target": [
             "TargetHome"
           ]
+        },
+        {
+          "name": "BrowseScholarships",
+          "pattern": "browse-scholarships",
+          "target": "BrowseScholarships"
         }
       ],
       "targets": {
@@ -144,6 +149,11 @@
         "TargetHome": {
           "id": "Home",
           "name": "Home"
+        },
+        "BrowseScholarships": {
+          "name": "BrowseScholarship",
+          "id": "BrowseScholarships",
+          "viewType": "XML"
         }
       }
     },

@@ -1,0 +1,219 @@
+<mvc:View
+    controllerName="scholarshipapp.scholarshipsubmission.controller.BrowseScholarships"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    displayBlock="true">
+
+    <Page
+        showHeader="false"
+        class="browsePage">
+
+        <content>
+            <VBox class="browseContent" width="100%">
+
+                <!-- Page heading -->
+                <VBox class="browseHeading">
+                    <Title
+                        text="Browse Scholarships"
+                        level="H1"
+                        class="browseTitle"/>
+
+                    <Text
+                        text="Discover scholarships that support your educational journey."
+                        class="browseSubtitle"/>
+                </VBox>
+
+                <!-- Search and filters -->
+                <VBox class="filterPanel">
+
+                    <SearchField
+                        id="scholarshipSearch"
+                        width="100%"
+                        placeholder="Search by scholarship name or keyword..."
+                        liveChange=".onSearch"/>
+
+                    <HBox
+                        class="filterRow"
+                        wrap="Wrap"
+                        alignItems="Center">
+
+                        <VBox class="filterItem">
+                            <Label text="Category"/>
+                            <Select
+                                id="categoryFilter"
+                                width="100%"
+                                selectedKey="ALL"
+                                change=".onFilterChange">
+                                <core:Item key="ALL" text="All Categories"/>
+                                <core:Item key="Academic Excellence" text="Academic Excellence"/>
+                                <core:Item key="Need Based" text="Need Based"/>
+                                <core:Item key="STEM" text="STEM"/>
+                                <core:Item key="Women in Education" text="Women in Education"/>
+                                <core:Item key="Special Category" text="Special Category"/>
+                            </Select>
+                        </VBox>
+
+                        <VBox class="filterItem">
+                            <Label text="Application Status"/>
+                            <Select
+                                id="statusFilter"
+                                width="100%"
+                                selectedKey="ALL"
+                                change=".onFilterChange">
+                                <core:Item key="ALL" text="All Statuses"/>
+                                <core:Item key="Open" text="Open"/>
+                                <core:Item key="Closing Soon" text="Closing Soon"/>
+                                <core:Item key="Closed" text="Closed"/>
+                            </Select>
+                        </VBox>
+
+                        <VBox class="filterItem">
+                            <Label text="Sort By"/>
+                            <Select
+                                id="sortFilter"
+                                width="100%"
+                                selectedKey="NAME"
+                                change=".onFilterChange">
+                                <core:Item key="NAME" text="Scholarship Name"/>
+                                <core:Item key="AMOUNT" text="Award Amount"/>
+                                <core:Item key="DEADLINE" text="Deadline"/>
+                            </Select>
+                        </VBox>
+
+                        <Button
+                            text="Clear Filters"
+                            icon="sap-icon://clear-filter"
+                            type="Transparent"
+                            press=".onClearFilters"
+                            class="clearFilterButton"/>
+                    </HBox>
+                </VBox>
+
+                <!-- Results heading -->
+                <HBox
+                    class="resultsHeader"
+                    alignItems="Center"
+                    justifyContent="SpaceBetween">
+
+                    <Title
+                        text="Available Scholarships"
+                        level="H2"/>
+
+                    <ObjectStatus
+                        text="{browse>/resultText}"
+                        state="Information"/>
+                </HBox>
+
+                <!-- Scholarship cards -->
+                <FlexBox
+                    id="scholarshipCards"
+                    items="{browse>/scholarships}"
+                    wrap="Wrap"
+                    justifyContent="Start"
+                    class="scholarshipCardContainer">
+
+                    <items>
+                        <VBox class="scholarshipCard">
+
+                            <HBox
+                                justifyContent="SpaceBetween"
+                                alignItems="Center">
+
+                                <core:Icon
+                                    src="{browse>icon}"
+                                    size="2rem"
+                                    color="#0875D1"/>
+
+                                <ObjectStatus
+                                    text="{browse>status}"
+                                    state="{browse>statusState}"/>
+                            </HBox>
+
+                            <Title
+                                text="{browse>name}"
+                                level="H3"
+                                class="scholarshipCardTitle"/>
+
+                            <Text
+                                text="{browse>category}"
+                                class="scholarshipCategory"/>
+
+                            <Text
+                                text="{browse>description}"
+                                maxLines="3"
+                                class="scholarshipDescription"/>
+
+                            <VBox class="scholarshipAmount">
+                                <Text text="Award Amount"/>
+                                <Title
+                                    text="{browse>amount}"
+                                    level="H2"/>
+                            </VBox>
+
+                            <HBox
+                                alignItems="Center"
+                                class="scholarshipInfoRow">
+
+                                <core:Icon
+                                    src="sap-icon://calendar"
+                                    color="#64748B"/>
+
+                                <Text text="{browse>deadline}"/>
+                            </HBox>
+
+                            <HBox
+                                alignItems="Center"
+                                class="scholarshipInfoRow">
+
+                                <core:Icon
+                                    src="sap-icon://education"
+                                    color="#64748B"/>
+
+                                <Text text="{browse>eligibility}"/>
+                            </HBox>
+
+                            <Toolbar class="scholarshipCardActions">
+                                <Button
+                                    text="View Details"
+                                    type="Transparent"
+                                    press=".onViewDetails"
+                                    class="detailsButton"/>
+
+                                <ToolbarSpacer/>
+
+                                <Button
+                                    text="Apply Now"
+                                    type="Emphasized"
+                                    enabled="{browse>canApply}"
+                                    press=".onApplyNow"/>
+                            </Toolbar>
+
+                        </VBox>
+                    </items>
+                </FlexBox>
+
+                <!-- No results -->
+                <VBox
+                    visible="{= ${browse>/scholarships}.length === 0 }"
+                    alignItems="Center"
+                    class="noResults">
+
+                    <core:Icon
+                        src="sap-icon://search"
+                        size="3rem"
+                        color="#94A3B8"/>
+
+                    <Title
+                        text="No scholarships found"
+                        level="H3"/>
+
+                    <Text
+                        text="Try changing your search or filters."/>
+
+                </VBox>
+
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>
