@@ -27,17 +27,30 @@ sap.ui.define([
 
                 // Create a list binding specifying the Entity Set name
                 var oListBinding = oModel.bindList("/ZI_SchSubmission");
-
+                var that = this;
                 // Request the contexts (fetches data from backend)
                 oListBinding.requestContexts().then(function (aContexts) {
                     var aStudents = aContexts.map(function (oContext) {
-                        return oContext.getObject();
-                    });
 
-                    console.log(aStudents);
+                var oStudent = oContext.getObject();
 
+                 return {
+                  ...oStudent,
+                  deadline: oStudent.deadlineSort
+                  ? oStudent.deadlineSort.split('-').reverse().join('-')
+                  : ""
+                   };
+
+                 });
+
+                  console.log(aStudents);
+                 that.setScholarshipsData(aStudents);
                 });
 
+
+            },
+
+            setScholarshipsData: function (aStudents) {
                 var aScholarships = [
                     {
                         id: "SCH001",
@@ -117,14 +130,13 @@ sap.ui.define([
                 ];
 
                 var oModel = new JSONModel({
-                    scholarships: aScholarships,
-                    resultText: aScholarships.length + " scholarships found"
+                    scholarships: aStudents,
+                    resultText: aStudents.length + " scholarships found"
                 });
 
                 this.getView().setModel(oModel, "browse");
                 this._applyFilters();
             },
-
             onSearch: function () {
                 this._applyFilters();
             },

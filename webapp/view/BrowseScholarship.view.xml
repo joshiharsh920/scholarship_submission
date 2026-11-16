@@ -1,3 +1,4 @@
+
 <mvc:View
     controllerName="scholarshipapp.scholarshipsubmission.controller.BrowseScholarships"
     xmlns:mvc="sap.ui.core.mvc"
@@ -116,64 +117,75 @@
                     <items>
                         <VBox class="scholarshipCard">
 
-                            <HBox
-                                justifyContent="SpaceBetween"
-                                alignItems="Center">
+                            <!-- Card content grows to fill available space -->
+                            <VBox class="scholarshipCardContent">
 
-                                <core:Icon
-                                    src="{browse>icon}"
-                                    size="2rem"
-                                    color="#0875D1"/>
+                                <HBox
+                                    justifyContent="SpaceBetween"
+                                    alignItems="Center">
 
-                                <ObjectStatus
-                                    text="{browse>status}"
-                                    state="{browse>statusState}"/>
-                            </HBox>
+                                    <core:Icon
+                                        src="{browse>icon}"
+                                        size="2rem"
+                                        color="#0875D1"/>
 
-                            <Title
-                                text="{browse>name}"
-                                level="H3"
-                                class="scholarshipCardTitle"/>
+                                    <ObjectStatus
+                                        text="{browse>status}"
+                                        state="{browse>statusState}"/>
+                                </HBox>
 
-                            <Text
-                                text="{browse>category}"
-                                class="scholarshipCategory"/>
-
-                            <Text
-                                text="{browse>description}"
-                                maxLines="3"
-                                class="scholarshipDescription"/>
-
-                            <VBox class="scholarshipAmount">
-                                <Text text="Award Amount"/>
                                 <Title
-                                    text="{browse>amount}"
-                                    level="H2"/>
+                                    text="{browse>name}"
+                                    level="H3"
+                                    class="scholarshipCardTitle"/>
+
+                                <Text
+                                    text="{browse>category}"
+                                    class="scholarshipCategory"/>
+
+                                <Text
+                                    text="{browse>description}"
+                                    maxLines="3"
+                                    class="scholarshipDescription"/>
+
+                                <VBox class="scholarshipAmount">
+                                    <Text text="Award Amount"/>
+                                    <Title
+                                        text="{browse>amount}"
+                                        level="H2"/>
+                                </VBox>
+
+                                <HBox
+                                    alignItems="Center"
+                                    class="scholarshipInfoRow">
+
+                                    <core:Icon
+                                        src="sap-icon://calendar"
+                                        color="#64748B"/>
+
+                                    <Text text="{browse>deadline}"/>
+                                </HBox>
+
+                                <HBox
+                                    alignItems="Center"
+                                    class="scholarshipInfoRow">
+
+                                    <core:Icon
+                                        src="sap-icon://education"
+                                        color="#64748B"/>
+
+                                    <Text text="{browse>eligibility}"/>
+                                </HBox>
+
+                                <layoutData>
+                                    <FlexItemData growFactor="1"/>
+                                </layoutData>
+
                             </VBox>
 
-                            <HBox
-                                alignItems="Center"
-                                class="scholarshipInfoRow">
-
-                                <core:Icon
-                                    src="sap-icon://calendar"
-                                    color="#64748B"/>
-
-                                <Text text="{browse>deadline}"/>
-                            </HBox>
-
-                            <HBox
-                                alignItems="Center"
-                                class="scholarshipInfoRow">
-
-                                <core:Icon
-                                    src="sap-icon://education"
-                                    color="#64748B"/>
-
-                                <Text text="{browse>eligibility}"/>
-                            </HBox>
-
+                            <!-- Actions stay below the growing content -->
                             <Toolbar class="scholarshipCardActions">
+
                                 <Button
                                     text="View Details"
                                     type="Transparent"
